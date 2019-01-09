@@ -27,8 +27,9 @@
   Then invoke the callback function, passing in the first element in the array as it's argument.
 */
 
-// Code Here 
-
+function first (arr, callback){
+  callback(arr[0])
+}
 // Do not edit the code below.
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 
@@ -47,7 +48,9 @@ first(names, function(firstName){
   Then invoke the callback, passing in the last element in the array as the argument.
 */
 
-//Code Here
+function last (arr, callback){
+  callback(arr[arr.length -1 ])
+}
 
 // Do not edit the code below.
 last(names, function(lastName){
@@ -65,9 +68,11 @@ last(names, function(lastName){
   Invoke the callback, passing in the product of the two numbers multiplied as the argument. 
 */
 
-//Code Here
+function multiply (num1, num2, callback){
+  return callback(num1*num2)
+}
 
-// Do not edit the code below.
+// Do not edit the code below.  
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
 });
@@ -84,7 +89,20 @@ multiply(4, 3, function(answer){
   If the name does not exist, invoke the callback with false as the argument.
 */
 
-//Code Here 
+// function contains (arr, name, callback){
+//   if(arr.indexOf(name) >-1){ //indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present, we had to put the rule afterwards because it came back as zero
+//   callback(true)
+//   }
+//   else{
+//     callback(false)
+//   }
+// }
+
+function contains (arr, name, callback){
+  callback(arr.includes(name));
+}
+  // find if the name exisis in the array
+  //How would I find an string out of an array? 
 
 // Do not edit the code below.
 contains(names, 'Colt', function(result){
@@ -104,9 +122,24 @@ contains(names, 'Colt', function(result){
   Write a function called uniq that takes in an array and a callback function.
   Remove any duplicate values from the array, and invoke the callback with the modified array as an argument.
 */
+//modifying versus creating a new array 
 
-//Code Here
+function uniq (arr, callback){
+  let newArr = [];
+  for (let i=0; i < arr.length; i++){
+    let temp = arr[i]
+    if (!newArr.includes(temp)){
+      newArr.push(temp)
+    }
+  }
+  callback(newArr)
+}
+  
 
+//search array
+//find duplicates
+//delete duplicates
+//
 // Do not edit the code below.
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -122,8 +155,11 @@ uniq(names, function(uniqArr){
   For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 */
 
-//Code Here 
-
+function each (arr, callback){
+  for(let i=0; i < arr.length; i++){
+    callback( arr[i], i)
+  }
+}
 // Do not edit the code below.
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -139,8 +175,14 @@ each(names, function(item, indice){
   When the correct user object is found, invoke the callback with the user object as an argument.
 */
 
-// Code here
-
+function getUserById (users, id, callback){
+  for(let i = 0; i < users.length; i++){
+    if(users[i].id === id){
+      return callback(users[i]);
+    }
+  }
+}
+//search
 // Do not edit the code below.
 var users = [
   {
